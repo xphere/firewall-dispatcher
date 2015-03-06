@@ -1,0 +1,29 @@
+{
+    "name": "xphere/firewall-dispatcher",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Berny Cantos",
+            "email": "be@rny.cc"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "xPheRe\\FirewallDispatcher\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "xPheRe\\FirewallDispatcher\\": "tests" }
+    },
+    "require": {
+        "symfony/dependency-injection": "~2.0,>=2.0.10",
+        "symfony/event-dispatcher": "~2.1",
+        "symfony/http-kernel": "~2.0,>=2.0.10",
+        "symfony/config": "~2.0,>=2.0.10",
+        "symfony/security-bundle": "~2.0,>=2.0.10"
+    },
+    "require-dev": {
+        "matthiasnoback/symfony-dependency-injection-test": "~0.7",
+        "phpunit/phpunit": "~4.5",
+        "php": ">=5.5"
+    }
+}

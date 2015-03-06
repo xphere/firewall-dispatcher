@@ -1,0 +1,24 @@
+language: php
+
+env:
+    - COMPOSER_OPTIONS="--prefer-stable"
+    - COMPOSER_OPTIONS="--prefer-lowest"
+
+php:
+    - 5.5
+    - hhvm
+    - 7.0
+
+matrix:
+    fast_finish: true
+    allow_failures:
+        - php: 7.0
+
+install:
+    - composer update --no-interaction --prefer-dist ${COMPOSER_OPTIONS}
+
+script:
+    - phpunit
+
+notifications:
+    email: false
