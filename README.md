@@ -80,3 +80,55 @@ Then you'll need to add detection also to the `CustomBehaviourForStoreArea`:
 
 This is nonsense, we're duplicating firewall detection, making it error prone.
 
+Installation
+------------
+
+### From [composer/packagist](//getcomposer.org)
+
+1. Add a dependency to `xphere/firewall-dispatcher`.
+2. Add the `FirewallDispatcherPass` compiler pass to your container.
+
+This last step can be done in any bundle or directly in `AppKernel.php`:
+
+```php
+
+use xPheRe\FirewallDispatcher\DependencyInjection\Compiler\FirewallDispatcherPass;
+
+class AppKernel extends Kernel
+{
+    ...
+
+    protected function getContainerBuilder()
+    {
+        return parent::getContainerBuilder()
+            ->addCompilerPass(new FirewallDispatcherPass())
+        ;
+    }
+
+    ...
+}
+```
+
+Usage
+-----
+
+Following the [previous example](#use-case) we define our custom listener in
+  the container like this:
+
+```yml
+services:
+    custom_behaviour_for_store_area:
+        class: CustomBehaviourForStoreArea
+        tags:
+            -
+                name: kernel.event_listener
+                event: security.enter_firewall.store_area
+                method: doCustomBehaviour
+```
+
+And that's it, no need to duplicate firewall settings.
+
+Compatibility
+-------------
+
+Tested under Symfony2 from 2.1 to 2.6.4
